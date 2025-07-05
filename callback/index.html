@@ -5,6 +5,18 @@
   </head>
   <body>
     <h1>OAuth Redirect Received</h1>
-    <p>Check the URL bar for your <code>?code=...</code></p>
+    <p id="code">Waiting for code...</p>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code");
+
+      if (code) {
+        document.getElementById("code").textContent = `Authorization Code: ${code}`;
+        console.log("Authorization code:", code);
+      } else {
+        document.getElementById("code").textContent = "No code found in URL.";
+      }
+    </script>
   </body>
 </html>
